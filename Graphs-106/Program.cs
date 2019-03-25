@@ -10,6 +10,16 @@ namespace Graphs_106
 	{
 		static void Main(string[] args)
 		{
+			Graph house = new Graph();
+			house.ListAllVertices();
+			bool running = true;
+
+			String currentRoom = "Living Room";
+
+			while(running)
+			{
+				Console.WriteLine("You are currently in the ")
+			}
 		}
 	}
 }
