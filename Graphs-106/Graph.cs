@@ -18,7 +18,7 @@ namespace Graphs_106
 			adjacencyList = new Dictionary<string, List<Vertex>>();
 			rooms = new List<Vertex>();
 			rooms.Add(new Vertex("Living Room", "A comfy room with a couch, tv, and bookselves."));
-			rooms.Add(new Vertex("Bedroom", "A place to sleep."));
+			rooms.Add(new Vertex("Bedroom", "A place to sleep. Has a bed and a desk to work at."));
 			rooms.Add(new Vertex("Bathroom", "Contains a toilet, shower, and sink. "));
 			rooms.Add(new Vertex("Kitchen", "Has everything you need to make your meals."));
 			rooms.Add(new Vertex("Exit", "Exit to the house."));
@@ -74,6 +74,17 @@ namespace Graphs_106
 		{
 			foreach (Vertex room in rooms)
 				Console.WriteLine(room.ToString());
+			Console.WriteLine();
+		}
+
+		public string GetRoomString(string roomName)
+		{
+			foreach(Vertex room in rooms)
+			{
+				if(room.RoomName.Equals(roomName))
+					return room.ToString();
+			}
+			return "";
 		}
 	}
 }

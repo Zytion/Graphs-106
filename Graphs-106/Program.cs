@@ -15,11 +15,32 @@ namespace Graphs_106
 			bool running = true;
 
 			String currentRoom = "Living Room";
-
+			
 			while(running)
 			{
-				Console.WriteLine("You are currently in the ")
+				string input = "";
+				Console.WriteLine("You are currently in the " + house.GetRoomString(currentRoom));
+				Console.Write("Nearby are: ");
+				foreach(Vertex room in house.GetAdjacentList(currentRoom))
+					Console.Write(room.RoomName + " ");
+
+				while(!house.IsConnected(currentRoom, input))
+				{
+					Console.Write("\nWhere would you like to go? ");
+					input = Console.ReadLine();
+					if(!house.IsConnected(currentRoom, input))
+						Console.WriteLine("Sorry, that is not an adjacent room.");
+				}
+				currentRoom = input;
+
+				if(currentRoom.Equals("Exit"))
+				{
+					running = false;
+					Console.WriteLine("You have left the house.");
+				}
 			}
+
+			Console.ReadLine();
 		}
 	}
 }
