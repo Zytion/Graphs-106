@@ -6,38 +6,49 @@ using System.Threading.Tasks;
 
 namespace Graphs_106
 {
+	/// <summary>
+	/// A Graph used to create a house layout
+	/// </summary>
 	class Graph
 	{
+		/// <summary>
+		/// A list of all the rooms (by name) and the rooms that are adjacent to them
+		/// </summary>
 		private Dictionary<string, List<Vertex>> adjacencyList;
 		private List<Vertex> rooms;
 
-		public List<Vertex> Rooms { get { return rooms; } set { rooms = value; } }
+		/// <summary>
+		/// Get a list of the rooms in the house
+		/// </summary>
+		public List<Vertex> Rooms { get { return rooms; } }
 
 		public Graph()
 		{
 			adjacencyList = new Dictionary<string, List<Vertex>>();
 			rooms = new List<Vertex>();
+			//Add rooms to the list
 			rooms.Add(new Vertex("Living Room", "A comfy room with a couch, tv, and bookselves."));
 			rooms.Add(new Vertex("Bedroom", "A place to sleep. Has a bed and a desk to work at."));
 			rooms.Add(new Vertex("Bathroom", "Contains a toilet, shower, and sink. "));
 			rooms.Add(new Vertex("Kitchen", "Has everything you need to make your meals."));
 			rooms.Add(new Vertex("Exit", "Exit to the house."));
 
+			//Living room connections
 			adjacencyList.Add("Living Room", new List<Vertex>());
 			adjacencyList["Living Room"].AddRange(rooms.GetRange(1,3));
-
+			//Bedroom connections
 			adjacencyList.Add("Bedroom", new List<Vertex>());
 			adjacencyList["Bedroom"].Add(rooms[0]);
 			adjacencyList["Bedroom"].Add(rooms[3]);
-
+			//Bathroom connections
 			adjacencyList.Add("Bathroom", new List<Vertex>());
 			adjacencyList["Bathroom"].Add(rooms[0]);
-
+			//Kitchen connections
 			adjacencyList.Add("Kitchen", new List<Vertex>());
 			adjacencyList["Kitchen"].Add(rooms[0]);
 			adjacencyList["Kitchen"].Add(rooms[1]);
 			adjacencyList["Kitchen"].Add(rooms[4]);
-
+			//Exit connections
 			adjacencyList.Add("Exit", new List<Vertex>());
 			adjacencyList["Exit"].Add(rooms[3]);
 
@@ -76,7 +87,11 @@ namespace Graphs_106
 				Console.WriteLine(room.ToString());
 			Console.WriteLine();
 		}
-
+		/// <summary>
+		/// Returns a string containing the given room's name and description
+		/// </summary>
+		/// <param name="roomName"></param>
+		/// <returns></returns>
 		public string GetRoomString(string roomName)
 		{
 			foreach(Vertex room in rooms)
